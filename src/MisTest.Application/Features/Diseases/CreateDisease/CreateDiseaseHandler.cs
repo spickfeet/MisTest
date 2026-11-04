@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MisTest.Application.Faults;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
@@ -23,7 +24,7 @@ namespace MisTest.Application.Features.Diseases.CreateDisease
         {
             if (await _unitOfWork.DiseaseRepository.GetDisease(request.DiseaseRequestDto.Name) != null)
             {
-                return Result.Failure(new("DiseaseIsExist", [new($"Болезнь ({request.DiseaseRequestDto.Name}) уже существует!")]));
+                return Result.Failure(DiseaseFaults.AlreadyExists(request.DiseaseRequestDto.Name));
             }
             await _unitOfWork.DiseaseRepository.CreateDiseaseAsync(_mapper.Map<DiseaseEntity>(request.DiseaseRequestDto));
             await _unitOfWork.SaveChangesAsync(cancellationToken);
