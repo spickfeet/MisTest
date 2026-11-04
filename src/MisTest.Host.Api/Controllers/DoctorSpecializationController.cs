@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MisTest.Application.Dtos.Doctor;
 using MisTest.Application.Dtos.DoctorSpecialization;
 using MisTest.Application.Features.DoctorSpecialization.CreateSpecialization;
 using MisTest.Application.Features.DoctorSpecialization.DeleteSpecialization;
@@ -39,7 +40,7 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.DoctorSpecializations.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница специализаций получена")]
-        public async Task<IActionResult> GetDoctorSpecializations([FromQuery] PageParams pageParams)
+        public async Task<ActionResult<PagedResult<DoctorSpecializationResponseDto>>> GetDoctorSpecializations([FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDoctorSpecializationsQuery(pageParams));
             return Ok(result.Value);

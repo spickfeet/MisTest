@@ -39,7 +39,7 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Diseases.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница болезней получена")]
-        public async Task<IActionResult> GetDiseases([FromQuery] PageParams pageParams)
+        public async Task<ActionResult<PagedResult<DiseaseResponseDto>>> GetDiseases([FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDiseaseQuery(pageParams));
             return Ok(result.Value);

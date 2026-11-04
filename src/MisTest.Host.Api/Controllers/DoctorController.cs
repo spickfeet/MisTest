@@ -40,7 +40,7 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Doctors.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница докторов получена")]
-        public async Task<IActionResult> GetDoctorsByFilter([FromQuery] DoctorFilterParams filter, [FromQuery] PageParams pageParams)
+        public async Task<ActionResult<PagedResult<DoctorResponseDto>>> GetDoctorsByFilter([FromQuery] DoctorFilterParams filter, [FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDoctorsByFilterQuery(filter, pageParams));
             return Ok(result.Value);

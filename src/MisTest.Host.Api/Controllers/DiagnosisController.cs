@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MisTest.Application.Dtos.Diagnosis;
-using MisTest.Application.Dtos.Doctor;
 using MisTest.Application.Features.Diagnosis.CreateDiagnosis;
 using MisTest.Application.Features.Diagnosis.DeleteDiagnosis;
 using MisTest.Application.Features.Diagnosis.GetDiagnosesByFilter;
@@ -41,7 +40,7 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Diagnosis.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница диагнозов получена")]
-        public async Task<ActionResult<PagedResult<DoctorResponseDto>>> GetDiagnosesByFilter([FromQuery] DiagnosisFilterParams filter, [FromQuery] PageParams pageParams)
+        public async Task<ActionResult<PagedResult<DiagnosisResponseDto>>> GetDiagnosesByFilter([FromQuery] DiagnosisFilterParams filter, [FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDiagnosesByFilterQuery(filter, pageParams));
             return Ok(result.Value);
