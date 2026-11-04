@@ -27,5 +27,11 @@
             public const string ById = Base + "/{id}";
             public const string ByCardNumber = Base + "/{cardNumber}";
         }
+
+        public static class Diagnosis
+        {
+            public const string Base = Api + "/diagnosis";
+            public const string ById = Base + "/{id}";
+        }
     }
 }

@@ -52,6 +52,8 @@ namespace MisTest.Infrastructure.Migrations
 
                     b.HasIndex("DiseaseId");
 
+                    b.HasIndex("DoctorId");
+
                     b.HasIndex("PatientId");
 
                     b.ToTable("Diagnoses");
@@ -159,7 +161,7 @@ namespace MisTest.Infrastructure.Migrations
 
                     b.HasOne("MisTest.Domain.Entities.DoctorEntity", "DoctorEntity")
                         .WithMany("DiagnosisEntities")
-                        .HasForeignKey("DiseaseId")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
