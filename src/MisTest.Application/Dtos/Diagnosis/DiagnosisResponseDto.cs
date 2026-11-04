@@ -1,10 +1,6 @@
 ﻿using MisTest.Application.Dtos.Disease;
 using MisTest.Application.Dtos.Doctor;
 using MisTest.Application.Dtos.Patient;
-using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Dtos.Diagnosis
 {

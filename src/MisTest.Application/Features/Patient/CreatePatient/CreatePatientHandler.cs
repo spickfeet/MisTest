@@ -2,13 +2,9 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MisTest.Application.Faults;
-using MisTest.Application.Features.Doctor.CreateDoctor;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Features.Patient.CreatePatient
 {

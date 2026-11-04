@@ -1,11 +1,4 @@
-﻿using MisTest.Application.Dtos.Disease;
-using MisTest.Application.Dtos.Doctor;
-using MisTest.Application.Dtos.Patient;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Application.Dtos.Diagnosis
+﻿namespace MisTest.Application.Dtos.Diagnosis
 {
     public class DiagnosisRequestDto
     {

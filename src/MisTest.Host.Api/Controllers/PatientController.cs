@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MisTest.Application.Dtos.Patient;
 using MisTest.Application.Features.Patient.CreatePatient;
 using MisTest.Application.Features.Patient.DeletePatient;
-using MisTest.Application.Features.Patient.GetPatientById;
+using MisTest.Application.Features.Patient.GetPatientByCardNumber;
 using MisTest.Application.Features.Patient.GetPatients;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;

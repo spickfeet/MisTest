@@ -1,9 +1,4 @@
-﻿using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Application.Dtos.Doctor
+﻿namespace MisTest.Application.Dtos.Doctor
 {
     public class DoctorRequestDto
     {

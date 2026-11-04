@@ -1,11 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Features.DoctorSpecialization.DeleteSpecialization;
 using MisTest.Common;
 using MisTest.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Features.Diseases.DeleteDisease
 {

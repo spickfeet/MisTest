@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Application.Dtos.Patient
+﻿namespace MisTest.Application.Dtos.Patient
 {
     public class PatientRequestDto
     {

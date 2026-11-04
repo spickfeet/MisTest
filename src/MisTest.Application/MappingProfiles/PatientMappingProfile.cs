@@ -1,12 +1,7 @@
 ﻿using AutoMapper;
-using MisTest.Application.Dtos.Doctor;
-using MisTest.Application.Dtos.DoctorSpecialization;
 using MisTest.Application.Dtos.Patient;
 using MisTest.Common.Page;
 using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.MappingProfiles
 {

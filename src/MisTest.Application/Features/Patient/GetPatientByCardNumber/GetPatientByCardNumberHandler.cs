@@ -6,7 +6,7 @@ using MisTest.Application.Faults;
 using MisTest.Common;
 using MisTest.Domain;
 
-namespace MisTest.Application.Features.Patient.GetPatientById
+namespace MisTest.Application.Features.Patient.GetPatientByCardNumber
 {
     public class GetPatientByCardNumberHandler : IRequestHandler<GetPatientByCardNumberQuery, Result<PatientResponseDto>>
     {

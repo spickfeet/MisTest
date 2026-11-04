@@ -2,14 +2,9 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MisTest.Application.Dtos.Disease;
-using MisTest.Application.Dtos.DoctorSpecialization;
-using MisTest.Application.Features.DoctorSpecialization.GetSpecializations;
 using MisTest.Common;
 using MisTest.Common.Page;
 using MisTest.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Features.Diseases.GetDiseases
 {

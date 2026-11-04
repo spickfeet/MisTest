@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Npgsql;
-
-namespace MisTest.Host.Api.Middleware
+﻿namespace MisTest.Host.Api.Middleware
 {
     public class ExceptionHandlingMiddleware
     {

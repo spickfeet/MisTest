@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Domain.Entities
+﻿namespace MisTest.Domain.Entities
 {
     public class DoctorEntity
     {

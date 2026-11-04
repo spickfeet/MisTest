@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MisTest.Common;
 using MisTest.Common.Page;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Infrastructure.Extensions
 {

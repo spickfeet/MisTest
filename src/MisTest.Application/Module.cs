@@ -1,11 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MisTest.Application.MappingProfiles;
-using MisTest.Domain;
-using MisTest.Domain.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 
 namespace MisTest.Application
 {

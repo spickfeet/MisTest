@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MisTest.Domain.Entities;
 using MisTest.Infrastructure.Configurations;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Infrastructure
 {

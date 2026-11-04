@@ -1,8 +1,5 @@
 ﻿using MisTest.Common.Filters;
 using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Infrastructure.Extensions
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Application.Dtos.DoctorSpecialization
+﻿namespace MisTest.Application.Dtos.DoctorSpecialization
 {
     public class DoctorSpecializationResponseDto()
     {

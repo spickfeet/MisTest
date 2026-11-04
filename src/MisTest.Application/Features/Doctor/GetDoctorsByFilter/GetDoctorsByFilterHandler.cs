@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MisTest.Application.Dtos.Doctor;
-using MisTest.Application.Dtos.DoctorSpecialization;
 using MisTest.Common;
 using MisTest.Common.Page;
 using MisTest.Domain;

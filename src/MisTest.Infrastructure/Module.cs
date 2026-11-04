@@ -2,9 +2,6 @@
 using MisTest.Domain;
 using MisTest.Domain.Repositories;
 using MisTest.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Infrastructure
 {

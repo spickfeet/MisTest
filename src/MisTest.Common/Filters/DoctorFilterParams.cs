@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Common.Filters
+﻿namespace MisTest.Common.Filters
 {
     public class DoctorFilterParams
     {

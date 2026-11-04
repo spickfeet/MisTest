@@ -1,10 +1,5 @@
-﻿using MisTest.Common;
-using MisTest.Common.Filters;
-using MisTest.Common.Page;
+﻿using MisTest.Common.Page;
 using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Domain.Repositories
 {

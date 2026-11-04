@@ -1,7 +1,4 @@
 ﻿using MisTest.Application.Dtos.DoctorSpecialization;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Dtos.Doctor
 {

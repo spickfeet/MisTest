@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MisTest.Common.Page
+﻿namespace MisTest.Common.Page
 {
     public class PagedResult<T>
     {

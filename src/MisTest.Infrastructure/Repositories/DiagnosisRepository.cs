@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MisTest.Common;
 using MisTest.Common.Filters;
 using MisTest.Common.Page;
 using MisTest.Domain.Entities;
 using MisTest.Domain.Repositories;
 using MisTest.Infrastructure.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Infrastructure.Repositories
 {
