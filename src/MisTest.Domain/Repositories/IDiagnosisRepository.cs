@@ -1,7 +1,6 @@
-﻿using MisTest.Domain.Entities;
-using MisTest.Common.Filters;
-using MisTest.Common;
+﻿using MisTest.Common.Filters;
 using MisTest.Common.Page;
+using MisTest.Domain.Entities;
 
 namespace MisTest.Domain.Repositories
 {

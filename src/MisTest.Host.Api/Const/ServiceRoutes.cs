@@ -9,16 +9,23 @@
             public const string ById = Base + "/{id}";
         }
 
-        public static class Disease
+        public static class Diseases
         {
-            public const string Base = Api + "/disease";
+            public const string Base = Api + "/diseases";
             public const string ById = Base + "/{id}";
         }
 
-        public static class Doctor
+        public static class Doctors
         {
-            public const string Base = Api + "/doctor";
+            public const string Base = Api + "/doctors";
             public const string ById = Base + "/{id}";
+        }
+
+        public static class Patients
+        {
+            public const string Base = Api + "/patients";
+            public const string ById = Base + "/{id}";
+            public const string ByCardNumber = Base + "/{cardNumber}";
         }
     }
 }

@@ -6,7 +6,7 @@ using MisTest.Common;
 using MisTest.Common.Page;
 using MisTest.Domain;
 
-namespace MisTest.Application.Features.DoctorSpecializations.GetSpecializations
+namespace MisTest.Application.Features.DoctorSpecialization.GetSpecializations
 {
     internal class GetDoctorSpecializationsHandler : IRequestHandler<GetDoctorSpecializationsQuery, Result<PagedResult<DoctorSpecializationResponseDto>>>
     {

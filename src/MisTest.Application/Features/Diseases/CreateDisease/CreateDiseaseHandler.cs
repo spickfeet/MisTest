@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Features.DoctorSpecializations.CreateSpecializations;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Features.Diseases.CreateDisease
 {

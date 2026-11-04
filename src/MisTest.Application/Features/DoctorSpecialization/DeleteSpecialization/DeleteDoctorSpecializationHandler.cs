@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using MisTest.Common;
 using MisTest.Domain;
 
-namespace MisTest.Application.Features.DoctorSpecializations.DeleteSpecialization
+namespace MisTest.Application.Features.DoctorSpecialization.DeleteSpecialization
 {
     public class DeleteDoctorSpecializationHandler : IRequestHandler<DeleteDoctorSpecializationCommand, Result>
     {

@@ -7,6 +7,7 @@ using MisTest.Infrastructure.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Linq;
 
 namespace MisTest.Infrastructure.Repositories
 {
@@ -32,6 +33,11 @@ namespace MisTest.Infrastructure.Repositories
             {
                 _context.Patients.Remove(patient);
             }
+        }
+
+        public async Task<PatientEntity?> GetPatientAsync(string cardNumber)
+        {
+            return await _context.Patients.AsNoTracking().FirstOrDefaultAsync(p => p.CardNumber == cardNumber);
         }
 
         public async Task<PagedResult<PatientEntity>> GetPatientsPageAsync(PageParams? pageParams)

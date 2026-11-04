@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using MisTest.Common;
 
-namespace MisTest.Application.Features.DoctorSpecializations.DeleteSpecialization
+namespace MisTest.Application.Features.DoctorSpecialization.DeleteSpecialization
 {
     public record DeleteDoctorSpecializationCommand(Guid Id) : IRequest<Result>;
 }

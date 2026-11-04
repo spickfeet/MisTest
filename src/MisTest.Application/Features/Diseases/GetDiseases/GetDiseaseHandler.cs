@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MisTest.Application.Dtos.Disease;
 using MisTest.Application.Dtos.DoctorSpecialization;
-using MisTest.Application.Features.DoctorSpecializations.GetSpecializations;
+using MisTest.Application.Features.DoctorSpecialization.GetSpecializations;
 using MisTest.Common;
 using MisTest.Common.Page;
 using MisTest.Domain;

@@ -143,6 +143,9 @@ namespace MisTest.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CardNumber")
+                        .IsUnique();
+
                     b.ToTable("Patients");
                 });
 

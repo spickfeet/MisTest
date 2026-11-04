@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MisTest.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Infrastructure.Configurations
 {
@@ -12,6 +9,8 @@ namespace MisTest.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<PatientEntity> builder)
         {
             builder.HasKey(p => p.Id);
+
+            builder.HasIndex(p => p.CardNumber).IsUnique();
 
             builder
                 .HasMany(p => p.DiagnosisEntities)

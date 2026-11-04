@@ -5,7 +5,7 @@ using MisTest.Domain;
 using MisTest.Common;
 using MisTest.Domain.Entities;
 
-namespace MisTest.Application.Features.DoctorSpecializations.CreateSpecializations
+namespace MisTest.Application.Features.DoctorSpecialization.CreateSpecialization
 {
     public class CreateSpecializationHandler : IRequestHandler<CreateDoctorSpecializationCommand, Result>
     {
@@ -23,7 +23,7 @@ namespace MisTest.Application.Features.DoctorSpecializations.CreateSpecializatio
         {
             if(await _unitOfWork.DoctorSpecializationRepository.GetSpecialization(request.DoctorSpecializationRequestDto.Name) != null)
             {
-                return Result.Failure(new("SpecializationIsExist", [new($"Специализация ({request.DoctorSpecializationRequestDto.Name}) уже существует!")]));
+                return Result.Failure(new("DoctorSpecializationIsExist", [new($"Специализация ({request.DoctorSpecializationRequestDto.Name}) уже существует!")]));
             }
             await _unitOfWork.DoctorSpecializationRepository.CreateSpecializationAsync(_mapper.Map<DoctorSpecializationEntity>(request.DoctorSpecializationRequestDto));
             await _unitOfWork.SaveChangesAsync(cancellationToken);

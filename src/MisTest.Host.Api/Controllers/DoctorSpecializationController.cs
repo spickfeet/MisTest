@@ -1,21 +1,21 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MisTest.Application.Dtos.DoctorSpecialization;
-using MisTest.Application.Features.DoctorSpecializations.CreateSpecializations;
-using MisTest.Application.Features.DoctorSpecializations.DeleteSpecialization;
-using MisTest.Application.Features.DoctorSpecializations.GetSpecializations;
+using MisTest.Application.Features.DoctorSpecialization.CreateSpecialization;
+using MisTest.Application.Features.DoctorSpecialization.DeleteSpecialization;
+using MisTest.Application.Features.DoctorSpecialization.GetSpecializations;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
 
 namespace MisTest.Host.Api.Controllers
 {
     [ApiController]
-    public class DoctorSpecializationsController : ControllerBase
+    public class DoctorSpecializationController : ControllerBase
     {
-        private readonly ILogger<DoctorSpecializationsController> _logger;
+        private readonly ILogger<DoctorSpecializationController> _logger;
         private readonly IMediator _mediator;
 
-        public DoctorSpecializationsController(ILogger<DoctorSpecializationsController> logger, IMediator mediator)
+        public DoctorSpecializationController(ILogger<DoctorSpecializationController> logger, IMediator mediator)
         {
             _logger = logger;
             _mediator = mediator;

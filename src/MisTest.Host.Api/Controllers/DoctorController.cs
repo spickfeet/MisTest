@@ -1,13 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MisTest.Application.Dtos.Doctor;
-using MisTest.Application.Dtos.DoctorSpecialization;
 using MisTest.Application.Features.Doctor.CreateDoctor;
 using MisTest.Application.Features.Doctor.DeleteDoctor;
 using MisTest.Application.Features.Doctor.GetDoctorsByFilter;
-using MisTest.Application.Features.DoctorSpecializations.CreateSpecializations;
-using MisTest.Application.Features.DoctorSpecializations.DeleteSpecialization;
-using MisTest.Application.Features.DoctorSpecializations.GetSpecializations;
 using MisTest.Common.Filters;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
@@ -26,7 +22,7 @@ namespace MisTest.Host.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost(ServiceRoutes.Doctor.Base)]
+        [HttpPost(ServiceRoutes.Doctors.Base)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Доктор успешно добавлен в систему")]
         public async Task<IActionResult> CreateDoctor([FromBody] DoctorRequestDto doctorRequestDto)
@@ -42,7 +38,7 @@ namespace MisTest.Host.Api.Controllers
             }
         }
 
-        [HttpGet(ServiceRoutes.Doctor.Base)]
+        [HttpGet(ServiceRoutes.Doctors.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница докторов получена")]
         public async Task<IActionResult> GetDoctorsByFilter([FromQuery] DoctorFilterParams filter, [FromQuery] PageParams pageParams)
         {
@@ -50,7 +46,7 @@ namespace MisTest.Host.Api.Controllers
             return Ok(result.Value);
         }
 
-        [HttpDelete(ServiceRoutes.Doctor.ById)]
+        [HttpDelete(ServiceRoutes.Doctors.ById)]
         [ProducesResponseType(StatusCodes.Status204NoContent, Description = "Доктор отсутствует")]
         public async Task<IActionResult> DeleteDoctor(Guid id)
         {

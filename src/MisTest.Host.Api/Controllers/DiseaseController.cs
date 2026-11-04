@@ -1,13 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MisTest.Application.Dtos.Disease;
-using MisTest.Application.Dtos.DoctorSpecialization;
 using MisTest.Application.Features.Diseases.CreateDisease;
 using MisTest.Application.Features.Diseases.DeleteDisease;
 using MisTest.Application.Features.Diseases.GetDiseases;
-using MisTest.Application.Features.DoctorSpecializations.CreateSpecializations;
-using MisTest.Application.Features.DoctorSpecializations.DeleteSpecialization;
-using MisTest.Application.Features.DoctorSpecializations.GetSpecializations;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
 
@@ -25,7 +21,7 @@ namespace MisTest.Host.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost(ServiceRoutes.Disease.Base)]
+        [HttpPost(ServiceRoutes.Diseases.Base)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Болезнь уже существует")]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Болезнь успешно добавлена в систему")]
         public async Task<IActionResult> CreateDisease([FromBody] DiseaseRequestDto doctorSpecializationRequestDto)
@@ -41,7 +37,7 @@ namespace MisTest.Host.Api.Controllers
             }
         }
 
-        [HttpGet(ServiceRoutes.Disease.Base)]
+        [HttpGet(ServiceRoutes.Diseases.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница болезней получена")]
         public async Task<IActionResult> GetDiseases([FromQuery] PageParams pageParams)
         {
@@ -49,7 +45,7 @@ namespace MisTest.Host.Api.Controllers
             return Ok(result.Value);
         }
 
-        [HttpDelete(ServiceRoutes.Disease.ById)]
+        [HttpDelete(ServiceRoutes.Diseases.ById)]
         [ProducesResponseType(StatusCodes.Status204NoContent, Description = "Болезнь отсутствует")]
         public async Task<IActionResult> DeleteDisease(Guid id)
         {
