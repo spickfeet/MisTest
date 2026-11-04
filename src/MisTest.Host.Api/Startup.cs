@@ -44,7 +44,7 @@ public class Startup
             await db.Database.MigrateAsync();
         }
 
-        app.UseMiddleware<ExceptionHandlingMiddleware>();
+        app.UseMiddleWarePipeline();
 
         app.MapDefaultEndpoints();
 
