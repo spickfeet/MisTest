@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Faults;
+using MisTest.Application.Features.Validation.Patient.CreatePatientValidator;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
@@ -13,19 +13,22 @@ namespace MisTest.Application.Features.Patient
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
+        private ICreatePatientValidator _validator;
         private ILogger<CreatePatientHandler> _logger;
-        public CreatePatientHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<CreatePatientHandler> logger)
+        public CreatePatientHandler(IUnitOfWork unitOfWork, IMapper mapper, ICreatePatientValidator validator, ILogger<CreatePatientHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _validator = validator;
             _logger = logger;
         }
 
         public async Task<Result> Handle(CreatePatientCommand request, CancellationToken cancellationToken)
         {
-            if (await _unitOfWork.PatientRepository.GetPatientAsync(request.PatientRequestDto.CardNumber) != null)
+            var validationResult = await _validator.Validate(request);
+            if (validationResult.IsFailure)
             {
-                return Result.Failure(PatientFaults.AlreadyExists(request.PatientRequestDto.CardNumber));
+                return validationResult;
             }
 
             await _unitOfWork.PatientRepository.CreatePatientAsync(_mapper.Map<PatientEntity>(request.PatientRequestDto));

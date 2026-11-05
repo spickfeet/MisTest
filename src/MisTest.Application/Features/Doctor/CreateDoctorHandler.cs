@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Faults;
+using MisTest.Application.Features.Validation.Doctor.CreateDoctorValidator;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
@@ -13,20 +13,22 @@ namespace MisTest.Application.Features.Doctor
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
+        private ICreateDoctorValidator _validator;
         private ILogger<CreateDoctorHandler> _logger;
-        public CreateDoctorHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<CreateDoctorHandler> logger)
+        public CreateDoctorHandler(IUnitOfWork unitOfWork, IMapper mapper, ICreateDoctorValidator validator, ILogger<CreateDoctorHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _validator = validator;
             _logger = logger;
         }
 
         public async Task<Result> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
         {
-            var specialization = await _unitOfWork.DoctorSpecializationRepository.GetSpecialization(request.DoctorRequestDto.SpecializationId);
-            if(specialization == null)
+            var validationResult = await _validator.Validate(request);
+            if (validationResult.IsFailure)
             {
-                return Result.Failure(DoctorSpecializationFaults.NotExists(request.DoctorRequestDto.SpecializationId));
+                return validationResult;
             }
 
             await _unitOfWork.DoctorRepository.CreateDoctorAsync(_mapper.Map<DoctorEntity>(request.DoctorRequestDto));

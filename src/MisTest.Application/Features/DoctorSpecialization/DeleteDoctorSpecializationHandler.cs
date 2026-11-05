@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using MisTest.Application.Faults;
+using MisTest.Application.Features.Validation.DoctorSpecialization.DeleteDoctorSpecializationValidator;
 using MisTest.Common;
 using MisTest.Common.Filters;
 using MisTest.Domain;
@@ -11,20 +12,26 @@ namespace MisTest.Application.Features.DoctorSpecialization
     public class DeleteDoctorSpecializationHandler : IRequestHandler<DeleteDoctorSpecializationCommand, Result>
     {
         private IUnitOfWork _unitOfWork;
+        private IDeleteDoctorSpecializationValidator _validator;
         private ILogger<DeleteDoctorSpecializationHandler> _logger;
-        public DeleteDoctorSpecializationHandler(IUnitOfWork unitOfWork,  ILogger<DeleteDoctorSpecializationHandler> logger)
+        public DeleteDoctorSpecializationHandler(
+            IUnitOfWork unitOfWork,
+            IDeleteDoctorSpecializationValidator validator,
+            ILogger<DeleteDoctorSpecializationHandler> logger)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
             _logger = logger;
         }
 
         public async Task<Result> Handle(DeleteDoctorSpecializationCommand request, CancellationToken cancellationToken)
         {
-            var page = await _unitOfWork.DoctorRepository.GetDoctorsPageAsync(filter: new DoctorFilterParams { SpecializationId = request.Id });
-            if(page.TotalCount > 0)
+            var validationResult = await _validator.Validate(request);
+            if (validationResult.IsFailure)
             {
-                return Result.Failure(DoctorSpecializationFaults.InUseByDoctors());
+                return validationResult;
             }
+
             await _unitOfWork.DoctorSpecializationRepository.DeleteSpecializationAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();

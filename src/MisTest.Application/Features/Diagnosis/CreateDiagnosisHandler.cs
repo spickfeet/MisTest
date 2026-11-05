@@ -14,19 +14,19 @@ namespace MisTest.Application.Features.Diagnosis
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        private ICreateDiagnosisValidator _createDiagnosisValidator;
+        private ICreateDiagnosisValidator _validator;
         private ILogger<CreateDiagnosisHandler> _logger;
-        public CreateDiagnosisHandler(IUnitOfWork unitOfWork, IMapper mapper, ICreateDiagnosisValidator createDiagnosisValidator, ILogger<CreateDiagnosisHandler> logger)
+        public CreateDiagnosisHandler(IUnitOfWork unitOfWork, IMapper mapper, ICreateDiagnosisValidator validator, ILogger<CreateDiagnosisHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _createDiagnosisValidator = createDiagnosisValidator;
+            _validator = validator;
             _logger = logger;
         }
 
         public async Task<Result> Handle(CreateDiagnosisCommand request, CancellationToken cancellationToken)
         {
-            var validationResult = await _createDiagnosisValidator.Validate(request);
+            var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
                 return validationResult;

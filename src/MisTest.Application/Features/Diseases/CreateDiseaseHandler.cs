@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.Logging;
 using MisTest.Application.Faults;
+using MisTest.Application.Features.Validation.Disease.CreateDiseaseValidator;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
@@ -13,20 +14,24 @@ namespace MisTest.Application.Features.Diseases
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
+        private ICreateDiseaseValidator _validator;
         private ILogger<CreateDiseaseHandler> _logger;
-        public CreateDiseaseHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<CreateDiseaseHandler> logger)
+        public CreateDiseaseHandler(IUnitOfWork unitOfWork, IMapper mapper, ICreateDiseaseValidator validator, ILogger<CreateDiseaseHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _logger = logger;
+            _validator = validator;
         }
 
         public async Task<Result> Handle(CreateDiseaseCommand request, CancellationToken cancellationToken)
         {
-            if (await _unitOfWork.DiseaseRepository.GetDisease(request.DiseaseRequestDto.Name) != null)
+            var validationResult = await _validator.Validate(request);
+            if (validationResult.IsFailure)
             {
-                return Result.Failure(DiseaseFaults.AlreadyExists(request.DiseaseRequestDto.Name));
+                return validationResult;
             }
+
             await _unitOfWork.DiseaseRepository.CreateDiseaseAsync(_mapper.Map<DiseaseEntity>(request.DiseaseRequestDto));
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();

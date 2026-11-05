@@ -1,13 +1,7 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
-using MisTest.Application.Faults;
-using MisTest.Application.Features.Diagnosis;
+﻿using MisTest.Application.Faults;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Messages.Features.Diagnosis;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Features.Validation.Diagnosis.CreateDiagnosisValidator
 {

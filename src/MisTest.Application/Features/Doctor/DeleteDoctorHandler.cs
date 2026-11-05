@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Faults;
+using MisTest.Application.Features.Validation.Disease.DeleteDiseaseValidator;
+using MisTest.Application.Features.Validation.Doctor.DeleteDoctorValidator;
 using MisTest.Common;
-using MisTest.Common.Filters;
 using MisTest.Domain;
 using MisTest.Messages.Features.Doctor;
 
@@ -11,20 +11,23 @@ namespace MisTest.Application.Features.Doctor
     public class DeleteDoctorHandler : IRequestHandler<DeleteDoctorCommand, Result>
     {
         private IUnitOfWork _unitOfWork;
+        private IDeleteDoctorValidator _validator;
         private ILogger<DeleteDoctorHandler> _logger;
-        public DeleteDoctorHandler(IUnitOfWork unitOfWork, ILogger<DeleteDoctorHandler> logger)
+        public DeleteDoctorHandler(IUnitOfWork unitOfWork, IDeleteDoctorValidator validator,  ILogger<DeleteDoctorHandler> logger)
         {
             _unitOfWork = unitOfWork;
+            _validator = validator;
             _logger = logger;
         }
 
         public async Task<Result> Handle(DeleteDoctorCommand request, CancellationToken cancellationToken)
         {
-            var page = await _unitOfWork.DiagnosisRepository.GetDiagnosesPageAsync(filter: new DiagnosisFilterParams { DoctorId = request.Id });
-            if (page.TotalCount > 0)
+            var validationResult = await _validator.Validate(request);
+            if (validationResult.IsFailure)
             {
-                return Result.Failure(DoctorFaults.InUseByDiagnoses());
+                return validationResult;
             }
+
             await _unitOfWork.DoctorRepository.DeleteDoctorAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();
