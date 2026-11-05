@@ -30,6 +30,11 @@ namespace MisTest.Infrastructure.Repositories
             }
         }
 
+        public async Task<PatientEntity?> GetPatient(Guid id)
+        {
+            return await _context.Patients.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+        }
+
         public async Task<PatientEntity?> GetPatientAsync(string cardNumber)
         {
             return await _context.Patients.AsNoTracking().FirstOrDefaultAsync(p => p.CardNumber == cardNumber);

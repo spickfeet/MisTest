@@ -16,5 +16,11 @@ namespace MisTest.Application.Faults
                 "Disease.InUse",
                 [new("Невозможно удалить болезнь, так как она присутствует в одном или нескольких диагнозах!")]);
         }
+
+        public static Fault NotExists(Guid id)
+        {
+            return new("Disease.NotExists",
+                [new($"Болезнь ({id}) не существует!")]);
+        }
     }
 }

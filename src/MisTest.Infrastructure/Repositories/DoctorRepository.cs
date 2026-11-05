@@ -31,6 +31,11 @@ namespace MisTest.Infrastructure.Repositories
             }
         }
 
+        public async Task<DoctorEntity?> GetDoctor(Guid id)
+        {
+            return await _context.Doctors.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
+        }
+
         public async Task<PagedResult<DoctorEntity>> GetDoctorsPageAsync(PageParams? pageParams = null, DoctorFilterParams? filter = null)
         {
             return await _context.Doctors

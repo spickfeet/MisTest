@@ -10,5 +10,11 @@ namespace MisTest.Application.Faults
                 "Doctor.InUse",
                 [new("Невозможно удалить доктора, так как он выставил диагноз одному или нескольким пациентам!")]);
         }
+
+        public static Fault NotExists(Guid id)
+        {
+            return new("Doctor.NotExists",
+                [new($"Доктор ({id}) не существует!")]);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace MisTest.Domain.Repositories
         public Task CreateDiseaseAsync(DiseaseEntity diseaseEntity);
         public Task<PagedResult<DiseaseEntity>> GetDiseasesPageAsync(PageParams? pageParams = null);
         public Task<DiseaseEntity?> GetDisease(string name);
+        public Task<DiseaseEntity?> GetDisease(Guid id);
         public Task DeleteDiseaseAsync(Guid id);
     }
 }

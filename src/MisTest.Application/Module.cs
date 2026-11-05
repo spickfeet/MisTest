@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using MisTest.Application.Features.Validation.Diagnosis.CreateDiagnosisValidator;
 using MisTest.Application.MappingProfiles;
 using System.Reflection;
 
@@ -12,6 +13,8 @@ namespace MisTest.Application
             {
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+
+            services.AddScoped<ICreateDiagnosisValidator, CreateDiagnosisValidator>();
 
             return services;
         }
