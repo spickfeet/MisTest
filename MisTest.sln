@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisTest.Aspire.AppHost", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisTest.Aspire.ServiceDefaults", "src\MisTest.Aspire\MisTest.Aspire.ServiceDefaults\MisTest.Aspire.ServiceDefaults.csproj", "{C952DACD-8D2C-D99B-B297-574FEAEC8705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisTest.Messages", "MisTest.Messages\MisTest.Messages.csproj", "{C406A3F1-2FFF-47DF-B15D-0755EBE6628D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisTest.Messages", "src\MisTest.Messages\MisTest.Messages.csproj", "{C406A3F1-2FFF-47DF-B15D-0755EBE6628D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

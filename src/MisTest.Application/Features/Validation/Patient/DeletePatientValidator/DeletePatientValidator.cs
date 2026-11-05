@@ -1,11 +1,7 @@
 ﻿using MisTest.Application.Faults;
 using MisTest.Common;
-using MisTest.Common.Filters;
 using MisTest.Domain;
 using MisTest.Messages.Features.Patient;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MisTest.Application.Features.Validation.Patient.DeletePatientValidator
 {
