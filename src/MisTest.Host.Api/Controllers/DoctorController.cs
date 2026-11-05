@@ -36,10 +36,18 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Doctors.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница докторов получена")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PagedResult<DoctorResponseDto>>> GetDoctorsByFilter([FromQuery] DoctorFilterParams filter, [FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDoctorsByFilterQuery(filter, pageParams));
-            return Ok(result.Value);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Value);
+            }
+            else
+            {
+                return BadRequest(result.Error);
+            }
         }
 
         [HttpDelete(ServiceRoutes.Doctors.ById)]

@@ -18,8 +18,8 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpPost(ServiceRoutes.DoctorSpecializations.Base)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Специализация уже существует")]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Специализация успешно создана")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Специализация уже существует")]
         public async Task<IActionResult> CreateDoctorSpecialization([FromBody] DoctorSpecializationRequestDto doctorSpecializationRequestDto)
         {
             var result = await _mediator.Send(new CreateDoctorSpecializationCommand(doctorSpecializationRequestDto));
@@ -35,10 +35,18 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.DoctorSpecializations.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница специализаций получена")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PagedResult<DoctorSpecializationResponseDto>>> GetDoctorSpecializations([FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDoctorSpecializationsQuery(pageParams));
-            return Ok(result.Value);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Value);
+            }
+            else
+            {
+                return BadRequest(result.Error);
+            }
         }
 
         [HttpDelete(ServiceRoutes.DoctorSpecializations.ById)]

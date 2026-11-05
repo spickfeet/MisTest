@@ -9,7 +9,7 @@ using MisTest.Messages.Features.Patient;
 
 namespace MisTest.Application.Features.Patient
 {
-    public class GetPatientByCardNumberHandler : IRequestHandler<GetPatientByCardNumberQuery, Result<PatientResponseDto>>
+    public class GetPatientByCardNumberHandler : IRequestHandler<GetPatientByCardNumberQuery, Result<PatientResponseDto?>>
     {
         private IUnitOfWork _unitOfWork;
         private ILogger<GetPatientByCardNumberHandler> _logger;
@@ -21,12 +21,11 @@ namespace MisTest.Application.Features.Patient
             _logger = logger;
         }
 
-        public async Task<Result<PatientResponseDto>> Handle(GetPatientByCardNumberQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PatientResponseDto?>> Handle(GetPatientByCardNumberQuery request, CancellationToken cancellationToken)
         {
-            var patientDto = _mapper.Map<PatientResponseDto>(await _unitOfWork.PatientRepository.GetPatientAsync(request.CardNumber));
-            return patientDto == null ? 
-                Result<PatientResponseDto>.Failure(PatientFaults.NotExists(request.CardNumber)) : 
-                Result<PatientResponseDto>.Success(patientDto);
+            return Result<PatientResponseDto?>.Success(
+                _mapper.Map<PatientResponseDto?>(
+                    await _unitOfWork.PatientRepository.GetPatientAsync(request.CardNumber)));
         }
     }
 }

@@ -4,5 +4,5 @@ using MisTest.Messages.Dtos.Patient;
 
 namespace MisTest.Messages.Features.Patient
 {
-    public record GetPatientByCardNumberQuery(string CardNumber) : IRequest<Result<PatientResponseDto>>;
+    public record GetPatientByCardNumberQuery(string CardNumber) : IRequest<Result<PatientResponseDto?>>;
 }

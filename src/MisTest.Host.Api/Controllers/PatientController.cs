@@ -17,8 +17,8 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpPost(ServiceRoutes.Patients.Base)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Пациент уже существует")]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Пациент добавлен в систему")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Пациент уже существует")]
         public async Task<IActionResult> CreatePatient([FromBody] PatientRequestDto patientRequestDto)
         {
             var result = await _mediator.Send(new CreatePatientCommand(patientRequestDto));
@@ -34,25 +34,35 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Patients.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница пациентов получена")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PagedResult<PatientResponseDto>>> GetPatients([FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetPatientsQuery(pageParams));
-            return Ok(result.Value);
-        }
-
-        [HttpGet(ServiceRoutes.Patients.ByCardNumber)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Description = "Пациент не найден")]
-        public async Task<ActionResult<PatientResponseDto>> GetPatient(string cardNumber)
-        {
-            var result = await _mediator.Send(new GetPatientByCardNumberQuery(cardNumber));
             if (result.IsSuccess)
             {
                 return Ok(result.Value);
             }
             else
             {
-                return NotFound(result.Error);
+                return BadRequest(result.Error);
+            }
+        }
+
+        [HttpGet(ServiceRoutes.Patients.ByCardNumber)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Description = "Пациент не найден")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<PatientResponseDto>> GetPatient(string cardNumber)
+        {
+            var result = await _mediator.Send(new GetPatientByCardNumberQuery(cardNumber));
+            if (result.IsSuccess)
+            {
+                if(result.Value != null) return Ok(result.Value);
+                else return NotFound();
+            }
+            else
+            {
+                return BadRequest(result.Error);
             }
         }
 

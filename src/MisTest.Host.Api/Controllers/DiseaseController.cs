@@ -18,8 +18,8 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpPost(ServiceRoutes.Diseases.Base)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Болезнь уже существует")]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Болезнь успешно добавлена в систему")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Болезнь уже существует")]
         public async Task<IActionResult> CreateDisease([FromBody] DiseaseRequestDto doctorSpecializationRequestDto)
         {
             var result = await _mediator.Send(new CreateDiseaseCommand(doctorSpecializationRequestDto));
@@ -35,10 +35,18 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Diseases.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница болезней получена")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PagedResult<DiseaseResponseDto>>> GetDiseases([FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDiseaseQuery(pageParams));
-            return Ok(result.Value);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Value);
+            }
+            else
+            {
+                return BadRequest(result.Error);
+            }
         }
 
         [HttpDelete(ServiceRoutes.Diseases.ById)]

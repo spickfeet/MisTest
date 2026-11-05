@@ -19,8 +19,8 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpPost(ServiceRoutes.Diagnosis.Base)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Диагноз успешно добавлен в систему")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateDiagnosis([FromBody] DiagnosisRequestDto diagnosisRequestDto)
         {
             var result = await _mediator.Send(new CreateDiagnosisCommand(diagnosisRequestDto));
@@ -36,10 +36,18 @@ namespace MisTest.Host.Api.Controllers
 
         [HttpGet(ServiceRoutes.Diagnosis.Base)]
         [ProducesResponseType(StatusCodes.Status200OK, Description = "Страница диагнозов получена")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<PagedResult<DiagnosisResponseDto>>> GetDiagnosesByFilter([FromQuery] DiagnosisFilterParams filter, [FromQuery] PageParams pageParams)
         {
             var result = await _mediator.Send(new GetDiagnosesByFilterQuery(filter, pageParams));
-            return Ok(result.Value);
+            if (result.IsSuccess)
+            {
+                return Ok(result.Value);
+            }
+            else
+            {
+                return BadRequest(result.Error);
+            }
         }
 
         [HttpDelete(ServiceRoutes.Diagnosis.ById)]
