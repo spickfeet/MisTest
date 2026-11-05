@@ -7,6 +7,7 @@ using MisTest.Application.Features.Validation.Doctor.DeleteDoctorValidator;
 using MisTest.Application.Features.Validation.DoctorSpecialization.CreateDoctorSpecializationValidator;
 using MisTest.Application.Features.Validation.DoctorSpecialization.DeleteDoctorSpecializationValidator;
 using MisTest.Application.Features.Validation.Patient.CreatePatientValidator;
+using MisTest.Application.Features.Validation.Patient.DeletePatientValidator;
 using MisTest.Application.MappingProfiles;
 using System.Reflection;
 
@@ -29,6 +30,7 @@ namespace MisTest.Application
             services.AddScoped<ICreateDoctorSpecializationValidator, CreateDoctorSpecializationValidator>();
             services.AddScoped<IDeleteDoctorSpecializationValidator, DeleteDoctorSpecializationValidator>();
             services.AddScoped<ICreatePatientValidator, CreatePatientValidator>();
+            services.AddScoped<IDeletePatientValidator, DeletePatientValidator>();
 
             return services;
         }
