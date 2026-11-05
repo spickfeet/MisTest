@@ -24,11 +24,18 @@ namespace MisTest.Application.Features.Diseases
             var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
+                _logger.LogWarning(
+                    "Disease removal validation failed. Errors: {Errors}",
+                    string.Join("; ", validationResult.Error!.Details.Select(d => d.Message)));
+
                 return validationResult;
             }
 
             await _unitOfWork.DiseaseRepository.DeleteDiseaseAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Disease deleted: Id = {Id}", request.Id);
+
             return Result.Success();
         }
     }

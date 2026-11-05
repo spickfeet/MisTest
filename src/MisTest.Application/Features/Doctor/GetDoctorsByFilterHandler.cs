@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.Extensions.Logging;
 using MisTest.Common;
 using MisTest.Common.Page;
 using MisTest.Domain;
@@ -13,12 +12,10 @@ namespace MisTest.Application.Features.Doctor
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        private ILogger<GetDoctorsByFilterHandler> _logger;
-        public GetDoctorsByFilterHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<GetDoctorsByFilterHandler> logger)
+        public GetDoctorsByFilterHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _logger = logger;
         }
         public async Task<Result<PagedResult<DoctorResponseDto>>> Handle(GetDoctorsByFilterQuery request, CancellationToken cancellationToken)
         {

@@ -29,10 +29,20 @@ namespace MisTest.Application.Features.Diagnosis
             var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
+                _logger.LogWarning(
+                    "Diagnosis creation validation failed. Errors: {Errors}", 
+                    string.Join("; ", validationResult.Error!.Details.Select(d => d.Message)));
+
                 return validationResult;
             }
-            await _unitOfWork.DiagnosisRepository.CreateDiagnosisAsync(_mapper.Map<DiagnosisEntity>(request.DiagnosisRequestDto));
+
+            var entity = _mapper.Map<DiagnosisEntity>(request.DiagnosisRequestDto);
+
+            await _unitOfWork.DiagnosisRepository.CreateDiagnosisAsync(entity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Diagnosis created: Id = {Id}", entity.Id);
+
             return Result.Success();
         }
     }

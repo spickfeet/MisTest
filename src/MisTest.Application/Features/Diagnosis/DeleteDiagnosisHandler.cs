@@ -20,6 +20,9 @@ namespace MisTest.Application.Features.Diagnosis
         {
             await _unitOfWork.DiagnosisRepository.DeleteDiagnosisAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Diagnosis deleted: Id = {Id}", request.Id);
+
             return Result.Success();
         }
     }

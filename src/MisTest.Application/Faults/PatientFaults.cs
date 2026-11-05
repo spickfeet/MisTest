@@ -13,7 +13,7 @@ namespace MisTest.Application.Faults
         public static Fault NotExists(string cardNumber)
         {
             return new("Patient.NotExists",
-                [new("Пациент с номером карты ({cardNumber}) не существует!")]);
+                [new($"Пациент с номером карты ({cardNumber}) не существует!")]);
         }
 
         public static Fault NotExists(Guid id)

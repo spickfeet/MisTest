@@ -28,11 +28,20 @@ namespace MisTest.Application.Features.Doctor
             var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
+                _logger.LogWarning(
+                    "Doctor creation validation failed. Errors: {Errors}",
+                    string.Join("; ", validationResult.Error!.Details.Select(d => d.Message)));
+
                 return validationResult;
             }
 
-            await _unitOfWork.DoctorRepository.CreateDoctorAsync(_mapper.Map<DoctorEntity>(request.DoctorRequestDto));
+            var entity = _mapper.Map<DoctorEntity>(request.DoctorRequestDto);
+
+            await _unitOfWork.DoctorRepository.CreateDoctorAsync(entity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Doctor created: Id = {Id}", entity.Id);
+
             return Result.Success();
         }
     }

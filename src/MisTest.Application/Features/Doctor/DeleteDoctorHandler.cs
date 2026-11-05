@@ -24,11 +24,18 @@ namespace MisTest.Application.Features.Doctor
             var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
+                _logger.LogWarning(
+                    "Doctor removal validation failed. Errors: {Errors}",
+                    string.Join("; ", validationResult.Error!.Details.Select(d => d.Message)));
+
                 return validationResult;
             }
 
             await _unitOfWork.DoctorRepository.DeleteDoctorAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Doctor deleted: Id = {Id}", request.Id);
+
             return Result.Success();
         }
     }

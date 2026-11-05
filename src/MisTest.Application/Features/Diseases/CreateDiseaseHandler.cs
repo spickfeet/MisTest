@@ -28,11 +28,20 @@ namespace MisTest.Application.Features.Diseases
             var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
+                _logger.LogWarning(
+                    "Disease creation validation failed. Errors: {Errors}",
+                    string.Join("; ", validationResult.Error!.Details.Select(d => d.Message)));
+
                 return validationResult;
             }
 
-            await _unitOfWork.DiseaseRepository.CreateDiseaseAsync(_mapper.Map<DiseaseEntity>(request.DiseaseRequestDto));
+            var entity = _mapper.Map<DiseaseEntity>(request.DiseaseRequestDto);
+
+            await _unitOfWork.DiseaseRepository.CreateDiseaseAsync(entity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Disease created: Id = {Id}", entity.Id);
+
             return Result.Success();
         }
     }

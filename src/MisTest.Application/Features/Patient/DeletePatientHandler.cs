@@ -20,6 +20,9 @@ namespace MisTest.Application.Features.Patient
         {
             await _unitOfWork.PatientRepository.DeletePatientAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("Patient deleted: Id = {Id}", request.Id);
+
             return Result.Success();
         }
     }

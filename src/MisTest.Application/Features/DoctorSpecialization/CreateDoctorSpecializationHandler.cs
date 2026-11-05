@@ -32,11 +32,20 @@ namespace MisTest.Application.Features.DoctorSpecialization
             var validationResult = await _validator.Validate(request);
             if (validationResult.IsFailure)
             {
+                _logger.LogWarning(
+                    "DoctorSpecialization creation validation failed. Errors: {Errors}",
+                    string.Join("; ", validationResult.Error!.Details.Select(d => d.Message)));
+
                 return validationResult;
             }
 
-            await _unitOfWork.DoctorSpecializationRepository.CreateSpecializationAsync(_mapper.Map<DoctorSpecializationEntity>(request.DoctorSpecializationRequestDto));
+            var entity = _mapper.Map<DoctorSpecializationEntity>(request.DoctorSpecializationRequestDto);
+
+            await _unitOfWork.DoctorSpecializationRepository.CreateSpecializationAsync(entity);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            _logger.LogInformation("DoctorSpecialization created: Id = {Id}", entity.Id);
+
             return Result.Success();
         }
     }
