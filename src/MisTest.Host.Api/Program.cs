@@ -1,5 +1,4 @@
 using MisTest.Host.Api;
-using MisTest.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

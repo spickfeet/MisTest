@@ -4,7 +4,7 @@ using MisTest.Domain.Entities;
 
 namespace MisTest.Infrastructure.Configurations
 {
-    public class DoctorConfuguration : IEntityTypeConfiguration<DoctorEntity>
+    public class DoctorConfiguration : IEntityTypeConfiguration<DoctorEntity>
     {
         public void Configure(EntityTypeBuilder<DoctorEntity> builder)
         {

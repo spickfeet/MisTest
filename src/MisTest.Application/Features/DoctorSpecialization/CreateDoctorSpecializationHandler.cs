@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Faults;
 using MisTest.Application.Features.Validation.DoctorSpecialization.CreateDoctorSpecializationValidator;
 using MisTest.Common;
 using MisTest.Domain;

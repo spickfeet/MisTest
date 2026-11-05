@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Faults;
 using MisTest.Application.Features.Validation.DoctorSpecialization.DeleteDoctorSpecializationValidator;
 using MisTest.Common;
-using MisTest.Common.Filters;
 using MisTest.Domain;
 using MisTest.Messages.Features.DoctorSpecialization;
 

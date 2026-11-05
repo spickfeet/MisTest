@@ -3,7 +3,6 @@ using MisTest.Common.Page;
 using MisTest.Domain.Entities;
 using MisTest.Domain.Repositories;
 using MisTest.Infrastructure.Extensions;
-using System.Xml.Linq;
 
 namespace MisTest.Infrastructure.Repositories
 {

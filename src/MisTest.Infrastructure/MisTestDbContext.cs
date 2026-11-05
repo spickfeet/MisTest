@@ -18,7 +18,7 @@ namespace MisTest.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new DiagnosisConfiguration());
             modelBuilder.ApplyConfiguration(new DiseaseConfiguration());
-            modelBuilder.ApplyConfiguration(new DoctorConfuguration());
+            modelBuilder.ApplyConfiguration(new DoctorConfiguration());
             modelBuilder.ApplyConfiguration(new DoctorSpecializationConfiguration());
             modelBuilder.ApplyConfiguration(new PatientConfiguration());
 

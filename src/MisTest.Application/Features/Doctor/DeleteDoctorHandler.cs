@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using MisTest.Application.Features.Validation.Disease.DeleteDiseaseValidator;
 using MisTest.Application.Features.Validation.Doctor.DeleteDoctorValidator;
 using MisTest.Common;
 using MisTest.Domain;
