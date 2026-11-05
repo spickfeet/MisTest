@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
+using MisTest.Application.Faults;
 using MisTest.Common;
 using MisTest.Domain;
 using MisTest.Domain.Entities;
@@ -22,6 +23,12 @@ namespace MisTest.Application.Features.Doctor
 
         public async Task<Result> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
         {
+            var specialization = await _unitOfWork.DoctorSpecializationRepository.GetSpecialization(request.DoctorRequestDto.SpecializationId);
+            if(specialization == null)
+            {
+                return Result.Failure(DoctorSpecializationFaults.NotExists(request.DoctorRequestDto.SpecializationId));
+            }
+
             await _unitOfWork.DoctorRepository.CreateDoctorAsync(_mapper.Map<DoctorEntity>(request.DoctorRequestDto));
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();

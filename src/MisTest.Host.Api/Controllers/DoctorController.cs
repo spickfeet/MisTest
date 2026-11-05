@@ -21,8 +21,8 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpPost(ServiceRoutes.Doctors.Base)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created, Description = "Доктор успешно добавлен в систему")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Не получилось добавить доктора")]
         public async Task<IActionResult> CreateDoctor([FromBody] DoctorRequestDto doctorRequestDto)
         {
             var result = await _mediator.Send(new CreateDoctorCommand(doctorRequestDto));

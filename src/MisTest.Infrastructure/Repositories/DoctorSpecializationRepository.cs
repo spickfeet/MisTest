@@ -3,6 +3,7 @@ using MisTest.Common.Page;
 using MisTest.Domain.Entities;
 using MisTest.Domain.Repositories;
 using MisTest.Infrastructure.Extensions;
+using System.Xml.Linq;
 
 namespace MisTest.Infrastructure.Repositories
 {
@@ -39,6 +40,11 @@ namespace MisTest.Infrastructure.Repositories
         public async Task<DoctorSpecializationEntity?> GetSpecialization(string name)
         {
             return await _context.DoctorSpecialization.AsNoTracking().FirstOrDefaultAsync(s => s.Name == name);
+        }
+
+        public async Task<DoctorSpecializationEntity?> GetSpecialization(Guid id)
+        {
+            return await _context.DoctorSpecialization.AsNoTracking().FirstOrDefaultAsync(s => s.Id == id);
         }
     }
 }

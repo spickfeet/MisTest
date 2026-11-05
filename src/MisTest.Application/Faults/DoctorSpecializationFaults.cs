@@ -14,7 +14,12 @@ namespace MisTest.Application.Faults
         {
             return new Fault(
                 "DoctorSpecialization.InUse",
-                [new($"Невозможно удалить специализацию, так как она назначена одному или нескольким докторам!")]);
+                [new("Невозможно удалить специализацию, так как она назначена одному или нескольким докторам!")]);
+        }
+        public static Fault NotExists(Guid id)
+        {
+            return new("DoctorSpecialization.NotExists",
+                [new($"Специализация ({id}) не существует!")]);
         }
     }
 }
