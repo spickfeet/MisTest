@@ -20,7 +20,7 @@ namespace MisTest.Infrastructure.Configurations
                 .HasOne(d => d.PatientEntity)
                 .WithMany(d => d.DiagnosisEntities)
                 .HasForeignKey(d => d.PatientId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
                 .HasOne(d => d.DoctorEntity)

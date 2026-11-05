@@ -31,7 +31,7 @@ namespace MisTest.Infrastructure.Repositories
             }
         }
 
-        public async Task<PagedResult<DiagnosisEntity>> GetDiagnosesPageAsync(PageParams? pageParams, DiagnosisFilterParams? filter)
+        public async Task<PagedResult<DiagnosisEntity>> GetDiagnosesPageAsync(PageParams? pageParams = null, DiagnosisFilterParams? filter = null)
         {
             return await _context.Diagnoses
                 .Include(d => d.DiseaseEntity)

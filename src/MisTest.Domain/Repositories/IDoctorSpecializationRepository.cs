@@ -6,7 +6,7 @@ namespace MisTest.Domain.Repositories
     public interface IDoctorSpecializationRepository
     {
         public Task CreateSpecializationAsync(DoctorSpecializationEntity specializationEntity);
-        public Task<PagedResult<DoctorSpecializationEntity>> GetSpecializationsPageAsync(PageParams? pageParams);
+        public Task<PagedResult<DoctorSpecializationEntity>> GetSpecializationsPageAsync(PageParams? pageParams = null);
         public Task<DoctorSpecializationEntity?> GetSpecialization(string name);
         public Task DeleteSpecializationAsync(Guid id);
     }

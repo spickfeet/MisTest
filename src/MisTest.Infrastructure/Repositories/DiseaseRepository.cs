@@ -35,7 +35,7 @@ namespace MisTest.Infrastructure.Repositories
             return await _context.Diseases.AsNoTracking().FirstOrDefaultAsync(s => s.Name == name);
         }
 
-        public async Task<PagedResult<DiseaseEntity>> GetDiseasesPageAsync(PageParams? pageParams)
+        public async Task<PagedResult<DiseaseEntity>> GetDiseasesPageAsync(PageParams? pageParams = null)
         {
             return await _context.Diseases
                 .AsNoTracking()

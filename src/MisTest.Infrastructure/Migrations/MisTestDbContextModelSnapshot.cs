@@ -168,7 +168,7 @@ namespace MisTest.Infrastructure.Migrations
                     b.HasOne("MisTest.Domain.Entities.PatientEntity", "PatientEntity")
                         .WithMany("DiagnosisEntities")
                         .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("DiseaseEntity");

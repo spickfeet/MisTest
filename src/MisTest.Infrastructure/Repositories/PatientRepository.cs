@@ -35,7 +35,7 @@ namespace MisTest.Infrastructure.Repositories
             return await _context.Patients.AsNoTracking().FirstOrDefaultAsync(p => p.CardNumber == cardNumber);
         }
 
-        public async Task<PagedResult<PatientEntity>> GetPatientsPageAsync(PageParams? pageParams)
+        public async Task<PagedResult<PatientEntity>> GetPatientsPageAsync(PageParams? pageParams = null)
         {
             return await _context.Patients
                 .AsNoTracking().ToPageAsync(pageParams);

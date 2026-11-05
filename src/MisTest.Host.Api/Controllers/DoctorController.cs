@@ -45,11 +45,19 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpDelete(ServiceRoutes.Doctors.ById)]
-        [ProducesResponseType(StatusCodes.Status204NoContent, Description = "Доктор отсутствует")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Не получилось удалить доктора")]
         public async Task<IActionResult> DeleteDoctor(Guid id)
         {
             var result = await _mediator.Send(new DeleteDoctorCommand(id));
-            return NoContent();
+            if (result.IsSuccess)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(result.Error);
+            }
         }
     }
 }

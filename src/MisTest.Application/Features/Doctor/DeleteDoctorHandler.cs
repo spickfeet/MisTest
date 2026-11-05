@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using MisTest.Application.Faults;
 using MisTest.Common;
+using MisTest.Common.Filters;
 using MisTest.Domain;
 using MisTest.Messages.Features.Doctor;
 
@@ -18,6 +20,11 @@ namespace MisTest.Application.Features.Doctor
 
         public async Task<Result> Handle(DeleteDoctorCommand request, CancellationToken cancellationToken)
         {
+            var page = await _unitOfWork.DiagnosisRepository.GetDiagnosesPageAsync(filter: new DiagnosisFilterParams { DoctorId = request.Id });
+            if (page.TotalCount > 0)
+            {
+                return Result.Failure(DoctorFaults.InUseByDiagnoses());
+            }
             await _unitOfWork.DoctorRepository.DeleteDoctorAsync(request.Id);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();

@@ -7,7 +7,7 @@ namespace MisTest.Domain.Repositories
     public interface IDoctorRepository
     {
         public Task CreateDoctorAsync(DoctorEntity doctorEntity);
-        public Task <PagedResult<DoctorEntity>> GetDoctorsPageAsync(PageParams? pageParams, DoctorFilterParams? filter);
+        public Task <PagedResult<DoctorEntity>> GetDoctorsPageAsync(PageParams? pageParams = null, DoctorFilterParams? filter = null);
         public Task DeleteDoctorAsync(Guid id);
     }
 }

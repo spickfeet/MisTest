@@ -30,7 +30,7 @@ namespace MisTest.Infrastructure.Repositories
             }
         }
 
-        public async Task<PagedResult<DoctorSpecializationEntity>> GetSpecializationsPageAsync(PageParams? pageParams)
+        public async Task<PagedResult<DoctorSpecializationEntity>> GetSpecializationsPageAsync(PageParams? pageParams = null)
         {
             return await _context.DoctorSpecialization
                 .AsNoTracking().ToPageAsync(pageParams);

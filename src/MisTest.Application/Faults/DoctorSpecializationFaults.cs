@@ -9,5 +9,12 @@ namespace MisTest.Application.Faults
             return new("DoctorSpecialization.AlreadyExists", 
                 [new($"Специализация ({name}) уже существует!")]);
         }
+
+        public static Fault InUseByDoctors()
+        {
+            return new Fault(
+                "DoctorSpecialization.InUse",
+                [new($"Невозможно удалить специализацию, так как она назначена одному или нескольким докторам!")]);
+        }
     }
 }

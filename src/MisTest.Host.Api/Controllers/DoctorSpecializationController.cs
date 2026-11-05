@@ -44,11 +44,19 @@ namespace MisTest.Host.Api.Controllers
         }
 
         [HttpDelete(ServiceRoutes.DoctorSpecializations.ById)]
-        [ProducesResponseType(StatusCodes.Status204NoContent, Description = "Специализация отсутствует")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Description = "Не получилось удалить специализацию")]
         public async Task<IActionResult> DeleteDoctorSpecialization(Guid id)
         {
             var result = await _mediator.Send(new DeleteDoctorSpecializationCommand(id));
-            return NoContent();
+            if (result.IsSuccess)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest(result.Error);
+            }
         }
     }
 }

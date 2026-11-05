@@ -9,6 +9,8 @@ namespace MisTest.Infrastructure.Extensions
         {
             if (filter == null) return query;
             if (filter.PatientId != null) query = query.Where(d => d.PatientId == filter.PatientId);
+            if (filter.DoctorId != null) query = query.Where(d => d.DoctorId == filter.DoctorId);
+            if (filter.DiseaseId != null) query = query.Where(d => d.DiseaseId == filter.DiseaseId);
             return query;
         }
     }
