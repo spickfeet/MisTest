@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MisTest.Application.Dtos.Disease;
-using MisTest.Application.Features.Diseases.CreateDisease;
-using MisTest.Application.Features.Diseases.DeleteDisease;
-using MisTest.Application.Features.Diseases.GetDiseases;
+using MisTest.Messages.Dtos.Disease;
+using MisTest.Messages.Features.Diseases;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
 

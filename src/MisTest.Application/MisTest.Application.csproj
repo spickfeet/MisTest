@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MisTest.Messages\MisTest.Messages.csproj" />
     <ProjectReference Include="..\MisTest.Common\MisTest.Common.csproj" />
     <ProjectReference Include="..\MisTest.Domain\MisTest.Domain.csproj" />
   </ItemGroup>

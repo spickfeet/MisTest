@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MisTest.Application.Dtos.Diagnosis;
-using MisTest.Application.Features.Diagnosis.CreateDiagnosis;
-using MisTest.Application.Features.Diagnosis.DeleteDiagnosis;
-using MisTest.Application.Features.Diagnosis.GetDiagnosesByFilter;
+using MisTest.Messages.Dtos.Diagnosis;
+using MisTest.Messages.Features.Diagnosis;
 using MisTest.Common.Filters;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;

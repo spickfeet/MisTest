@@ -1,10 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MisTest.Application.Dtos.Patient;
-using MisTest.Application.Features.Patient.CreatePatient;
-using MisTest.Application.Features.Patient.DeletePatient;
-using MisTest.Application.Features.Patient.GetPatientByCardNumber;
-using MisTest.Application.Features.Patient.GetPatients;
+using MisTest.Messages.Dtos.Patient;
+using MisTest.Messages.Features.Patient;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
 

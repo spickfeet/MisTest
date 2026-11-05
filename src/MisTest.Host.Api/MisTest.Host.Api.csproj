@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\MisTest.Messages\MisTest.Messages.csproj" />
     <ProjectReference Include="..\MisTest.Application\MisTest.Application.csproj" />
     <ProjectReference Include="..\MisTest.Aspire\MisTest.Aspire.ServiceDefaults\MisTest.Aspire.ServiceDefaults.csproj" />
     <ProjectReference Include="..\MisTest.Infrastructure\MisTest.Infrastructure.csproj" />

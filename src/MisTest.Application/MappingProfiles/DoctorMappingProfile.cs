@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MisTest.Application.Dtos.Doctor;
+using MisTest.Messages.Dtos.Doctor;
 using MisTest.Common.Page;
 using MisTest.Domain.Entities;
 

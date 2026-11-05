@@ -1,10 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MisTest.Application.Dtos.Doctor;
-using MisTest.Application.Dtos.DoctorSpecialization;
-using MisTest.Application.Features.DoctorSpecialization.CreateSpecialization;
-using MisTest.Application.Features.DoctorSpecialization.DeleteSpecialization;
-using MisTest.Application.Features.DoctorSpecialization.GetSpecializations;
+using MisTest.Messages.Dtos.DoctorSpecialization;
+using MisTest.Messages.Features.DoctorSpecialization;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
 

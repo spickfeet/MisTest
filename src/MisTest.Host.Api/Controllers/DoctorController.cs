@@ -1,9 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MisTest.Application.Dtos.Doctor;
-using MisTest.Application.Features.Doctor.CreateDoctor;
-using MisTest.Application.Features.Doctor.DeleteDoctor;
-using MisTest.Application.Features.Doctor.GetDoctorsByFilter;
+using MisTest.Messages.Dtos.Doctor;
+using MisTest.Messages.Features.Doctor;
 using MisTest.Common.Filters;
 using MisTest.Common.Page;
 using MisTest.Host.Api.Const;
