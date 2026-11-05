@@ -10,12 +10,10 @@ namespace MisTest.Host.Api.Controllers
     [ApiController]
     public class DoctorSpecializationController : ControllerBase
     {
-        private readonly ILogger<DoctorSpecializationController> _logger;
         private readonly IMediator _mediator;
 
-        public DoctorSpecializationController(ILogger<DoctorSpecializationController> logger, IMediator mediator)
+        public DoctorSpecializationController(IMediator mediator)
         {
-            _logger = logger;
             _mediator = mediator;
         }
 

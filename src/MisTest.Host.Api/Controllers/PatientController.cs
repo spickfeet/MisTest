@@ -9,12 +9,10 @@ namespace MisTest.Host.Api.Controllers
 {
     public class PatientController : ControllerBase
     {
-        private readonly ILogger<PatientController> _logger;
         private readonly IMediator _mediator;
 
-        public PatientController(ILogger<PatientController> logger, IMediator mediator)
+        public PatientController(IMediator mediator)
         {
-            _logger = logger;
             _mediator = mediator;
         }
 
